@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+  labels:
+    app: app-demo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app-demo
+  template:
+    metadata:
+      labels:
+        app: app-demo
+    spec:
+      containers:
+      - name: app-demo
+        image: gcr.io/blissful-age-298815/app-demo:v1
+        ports:
+        - containerPort: 3000
+        env:
+        - name: USER
+          value: "Mihai"
+        - name: PASSWORD
+          value: "password"
